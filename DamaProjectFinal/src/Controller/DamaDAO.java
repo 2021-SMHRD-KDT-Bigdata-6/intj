@@ -217,14 +217,14 @@ public class DamaDAO {
 		}
 	}
 
-	public void levelUp(DamaVO damavo) { // 레벨업_
+	public void levelUp(DamaVO damavo, String userid) { // 레벨업_
 		getConn();
 
 		try {
 			String sql = "update dama set level = ? where id =?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getLv()));
-			psmt.setString(2, damavo.getId());
+			psmt.setString(2, userid);
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {

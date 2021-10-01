@@ -167,13 +167,14 @@ public class Damaconn {
 
 	}
 
-	public void level(DamaVO damavo) {
+	public void level(DamaVO damavo,String userid) {
 		if (damavo.getExp() >= 100) {
 			damavo.setLv(damavo.getLv() + 1);
 			damavo.setExp(damavo.getExp() - 100);
 			System.out.println("레벨 : " + damavo.getLv() + "달성!");
 			System.out.println("축하합니다!! 레벨이 상승하였습니다.");
 		}
+		damadao.levelUp(damavo,userid);
 	}
 	public void rankUp() {
 		ArrayList<DamaVO> list = damadao.rankUp();
