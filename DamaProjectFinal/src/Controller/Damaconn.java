@@ -40,16 +40,15 @@ public class Damaconn {
 		} else {
 			System.out.println("다시 입력해주세요");
 		}
-	
-		String exp = "0";
+		System.out.println("「" + type + "」" + "을 골라주셨어요!");
+		int exp = 0;
 		int energy = 0;
 		int lv = 0;
-		int day = 0;
-		String id = memvo.getId();
-		DamaVO damavo = new DamaVO(nick, type, exp, lv, energy, id, day);
+		int day = 1;
+	
+		DamaVO damavo = new DamaVO(nick, type, exp, lv, energy, type, day);
 		damadao.register(damavo);
 	}
-	
 
 	public void goalsuc(DamaVO damavo) {
 		if (damavo.getLv() == 10) {
@@ -72,19 +71,19 @@ public class Damaconn {
 		System.out.println("오늘도 수고했어요!!");
 		System.out.println("-체력과 식사횟수가 충전됩니다.-");
 	}
-	
-	public void music() {    // 음악재생
-		   MP3Player mp3 = new MP3Player();
-           String path = getClass().getResource("").getPath();
-           mp3.play(path + "Blossom.mp3");
-           Thread th = new Thread();
-           try {
-              th.sleep(5000);
-           } catch (InterruptedException e) {
-              e.printStackTrace();
-           }
-           mp3.stop();
-		
+
+	public void music() { // 음악재생
+		MP3Player mp3 = new MP3Player();
+		String path = getClass().getResource("").getPath();
+		mp3.play(path + "Blossom.mp3");
+		Thread th = new Thread();
+		try {
+			th.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		mp3.stop();
+
 	}
 
 	// 보너스 에너지값 정의
@@ -160,17 +159,15 @@ public class Damaconn {
 
 	}
 
-	
-
 	public void level(DamaVO damavo) {
-		if (Integer.parseInt(damavo.getExp()) >= 100) {
+		if (damavo.getExp() >= 100) {
 			damavo.setLv(damavo.getLv() + 1);
-			damavo.setExp(Integer.toString(Integer.parseInt(damavo.getExp()) - 100));
+			damavo.setExp(damavo.getExp() - 100);
 			System.out.println("레벨 : " + damavo.getLv() + "달성!");
 			System.out.println("축하합니다!! 레벨이 상승하였습니다.");
 		}
 	}
-	
+
 	public void close() {
 		System.out.println("게임을 종료합니다.");
 		System.exit(0);

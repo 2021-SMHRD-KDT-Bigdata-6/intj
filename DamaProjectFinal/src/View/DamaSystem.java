@@ -32,26 +32,24 @@ public class DamaSystem {
 
 			if (input == 1) {
 				System.out.println("==========로그인==========");
-				userid=member.login();
+				member.login();
 
 			} else if (input == 2) {
 				System.out.println("==========회원가입==========");
 				member.join();
-			
+
 			} else if (input == 3) {
 				damaconn.close();
-			
-			} 
-		}
-				
+
+			}
 
 			while (true) {
 				System.out.println("[1]다마고치 등록 [2]다마고치 키우기 [3]다마고치 상태확인 [4]랭킹확인 [5]종료 >> ");
 				int select = sc.nextInt();
 
 				if (select == 1) {
-					damaconn.register(userid);
-					
+					damaconn.register();
+
 					break;
 				} else if (select == 2) {
 
@@ -196,5 +194,5 @@ public class DamaSystem {
 				}
 			}
 		}
-
 	}
+}

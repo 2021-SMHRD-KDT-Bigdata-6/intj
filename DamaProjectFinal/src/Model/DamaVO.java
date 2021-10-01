@@ -2,14 +2,14 @@ package Model;
 
 public class DamaVO {
 	
-  
+	private String id;
 	private String nick;
 	private String type;
-	private String exp;
+	private int exp;
 	private int lv;
 	private int energy;
 	private int day;
-	private String id;
+	
 	
 	public DamaVO(String id, String nick, int lv, String type, int day) {
 		this.id =id;
@@ -18,11 +18,12 @@ public class DamaVO {
 		this.lv = lv;
 		this.day = day;
 	}
-	public DamaVO(String nick, String type, String exp, int lv, int energy, String id, int day) {
+	public DamaVO(String nick, String type, int exp, int lv, int energy, String id, int day) {
 		this.nick = nick;
 		this.type = type;
 		this.lv = lv;
 		this.energy = energy;
+		this.id = id;
 		this.day = day;
 	}
 
@@ -58,11 +59,11 @@ public class DamaVO {
 		this.type = type;
 	}
 
-	public String getExp() {
+	public int getExp() {
 		return exp;
 	}
 
-	public void setExp(String exp) {
+	public void setExp(int exp) {
 		this.exp = exp;
 	}
 
