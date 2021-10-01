@@ -48,7 +48,7 @@ public class DamaDAO {
 		}
 	}
 
-	public int join(MemberVO vo) {       // 회원가입
+	public int join(MemberVO vo) { // 회원가입
 		int cnt = 0;
 		getConn();
 		try {
@@ -67,7 +67,7 @@ public class DamaDAO {
 		return cnt;
 	}
 
-	public MemberVO login(MemberVO vo) {         // 로그인
+	public MemberVO login(MemberVO vo) { // 로그인
 		MemberVO info = null;
 		getConn();
 
@@ -92,7 +92,8 @@ public class DamaDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");;
+			System.out.println("데이터 오류가 있음");
+			;
 		} finally {
 			close();
 		}
@@ -109,14 +110,17 @@ public class DamaDAO {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
-				String id = rs.getString("id");
-				String nick = rs.getString("nick");
-				int lv = rs.getInt("lv");
-				String type = rs.getString("type");
+				int i = 0;
+				if (i < 10) {
+					String id = rs.getString("id");
+					String nick = rs.getString("nick");
+					int lv = rs.getInt("lv");
+					String type = rs.getString("type");
 
-				DamaVO vo = new DamaVO(id, nick, lv, type, lv);
-				list.add(vo);
-				
+					DamaVO vo = new DamaVO(id, nick, lv, type, lv);
+					list.add(vo);
+
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,9 +130,10 @@ public class DamaDAO {
 
 		return list;
 	}
+
 	public void register(DamaVO damavo) { // 캐릭터 생성
 		getConn();
-		
+
 		try {
 			String sql = "insert into dama values(?,?,?,?,?,?,?)";
 			psmt = conn.prepareStatement(sql);
@@ -146,7 +151,8 @@ public class DamaDAO {
 			close();
 		}
 	}
-	public void study(DamaVO damavo) {  // 공부하기
+
+	public void study(DamaVO damavo) { // 공부하기
 		getConn();
 
 		String sql = "update dama set energy = ?, exp = ? ";
@@ -164,8 +170,8 @@ public class DamaDAO {
 		}
 
 	}
-	
-	public void workout(DamaVO damavo) {     // 운동하기
+
+	public void workout(DamaVO damavo) { // 운동하기
 
 		try {
 			getConn();
@@ -189,7 +195,7 @@ public class DamaDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));
-			psmt.setString(3,damavo.getId());
+			psmt.setString(3, damavo.getId());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
@@ -198,14 +204,14 @@ public class DamaDAO {
 		}
 	}
 
-	public void sleepUP(DamaVO damavo) {   // 잠자기
+	public void sleepUP(DamaVO damavo) { // 잠자기
 		getConn();
 		try {
 			String sql = "update dama set day = ?, exp = ? where id = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getDay()));
-			psmt.setString(2,Integer.toString(damavo.getExp()));
-			psmt.setString(3,damavo.getId());
+			psmt.setString(2, Integer.toString(damavo.getExp()));
+			psmt.setString(3, damavo.getId());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
@@ -213,22 +219,22 @@ public class DamaDAO {
 			close();
 		}
 	}
-	
-	public void levelUp(DamaVO damavo) {   // 레벨업
+
+	public void levelUp(DamaVO damavo) { // 레벨업
 		getConn();
-		
+
 		try {
 			String sql = "update dama set level = ? where id =?";
-			psmt= conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getLv()));
 			psmt.setString(2, damavo.getId());
 			psmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
 		} finally {
 			close();
 		}
 	}
-	
+
 }
