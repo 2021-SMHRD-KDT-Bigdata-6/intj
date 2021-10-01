@@ -201,10 +201,10 @@ public class DamaDAO {
 		}
 	}
 
-	public void sleepUP(DamaVO damavo) { // 잠자기
+	public void sleepUP(DamaVO damavo, String userid) { // 잠자기
 		getConn();
 		try {
-			String sql = "update dama set day = ?, exp = ? where id = ?";
+			String sql = "update dama set day = ?, energy = ? where id = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getDay()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));

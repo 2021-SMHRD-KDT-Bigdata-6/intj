@@ -42,7 +42,7 @@ public class Damaconn {
 		}
 		System.out.println("「" + type + "」" + "을 골라주셨어요!");
 		int exp = 0;
-		int energy = 0;
+		int energy = 100;
 		int lv = 0;
 		int day = 1;
 
@@ -68,9 +68,10 @@ public class Damaconn {
 		}
 	}
 
-	public void sleep() {
+	public void sleep(DamaVO damavo,String userid) {
 		System.out.println("오늘도 수고했어요!!");
 		System.out.println("-체력과 식사횟수가 충전됩니다.-");
+		damadao.sleepUP(damavo,userid);
 	}
 
 	public void music() { // 음악재생

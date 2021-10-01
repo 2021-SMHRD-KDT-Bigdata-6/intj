@@ -192,11 +192,11 @@ public class DamaSystem {
 							damaconn.level(damanow, userid);
 							 damaconn.goalsuc(damanow);
 						} else if (num == 4) {
-							damaconn.sleep();
+							//damaconn.sleep();
 							day++;
 							count = 0;
 
-							// damadao.sleepUP(damavo);
+							//damadao.sleepUP(damavo);
 
 						} else if (num == 5) {
 							System.out.print("정말로 종료하실 건가요? Y/N >> ");
