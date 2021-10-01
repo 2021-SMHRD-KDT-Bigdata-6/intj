@@ -60,7 +60,7 @@ public class DamaDAO {
 			cnt = psmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");
+			e.printStackTrace();
 		} finally {
 			close();
 		}
@@ -86,7 +86,7 @@ public class DamaDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");
+			e.printStackTrace();
 			;
 		} finally {
 			close();
@@ -186,7 +186,7 @@ public class DamaDAO {
 	public void eatingUP(DamaVO damavo,String userid) {
 		getConn();
 		try {
-			String sql = "update dama set energy = ?, exp = ? where id = ?,nick = ?";
+			String sql = "update dama set energy = ?, exp = ? where id = ? and nick = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));
@@ -195,7 +195,7 @@ public class DamaDAO {
 			
 			psmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");
+			e.printStackTrace();
 		} finally {
 			close();
 		}
@@ -211,7 +211,7 @@ public class DamaDAO {
 			psmt.setString(3, damavo.getId());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");
+			e.printStackTrace();
 		} finally {
 			close();
 		}
@@ -221,14 +221,14 @@ public class DamaDAO {
 		getConn();
 
 		try {
-			String sql = "update dama set level = ? where id =?";
+			String sql = "update dama set lv = ? where id =? ";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getLv()));
 			psmt.setString(2, userid);
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");
+			e.printStackTrace();
 		} finally {
 			close();
 		}
