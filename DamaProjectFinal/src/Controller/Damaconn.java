@@ -45,7 +45,7 @@ public class Damaconn {
 		int energy = 0;
 		int lv = 0;
 		int day = 1;
-	
+
 		DamaVO damavo = new DamaVO(nick, type, exp, lv, energy, type, day);
 		damadao.register(damavo);
 	}
@@ -166,6 +166,14 @@ public class Damaconn {
 			System.out.println("레벨 : " + damavo.getLv() + "달성!");
 			System.out.println("축하합니다!! 레벨이 상승하였습니다.");
 		}
+	}
+
+	public void rankUp() {
+		ArrayList<DamaVO> list = damadao.rankUp();
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+
 	}
 
 	public void close() {

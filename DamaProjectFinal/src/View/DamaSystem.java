@@ -65,7 +65,8 @@ public class DamaSystem {
 				} else if (select == 4) {
 
 					System.out.println("님의 현재 순위입니다."); // 랭킹 페이지 표시
-					System.out.print("별명    점수    순위"); // 닉값, 랭킹 값 받아와서 출
+
+					damaconn.rankUp();
 
 				} else if (select == 5) {
 					damaconn.close();

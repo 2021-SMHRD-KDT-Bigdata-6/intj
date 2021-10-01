@@ -99,7 +99,7 @@ public class DamaDAO {
 		ArrayList<DamaVO> list = new ArrayList<DamaVO>();
 		getConn();
 
-		String sql = "select * from dama orderdy day, lv";
+		String sql = "select * from dama order by lv, damadate desc";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -110,10 +110,7 @@ public class DamaDAO {
 					String nick = rs.getString("nick");
 					int lv = rs.getInt("lv");
 					String type = rs.getString("type");
-					// int energy = rs.getInt("energy");
-					int day = rs.getInt("day");
-
-					DamaVO vo = new DamaVO(id, nick, lv, type, day);
+					DamaVO vo = new DamaVO(id, nick, lv, type, lv);
 					list.add(vo);
 
 				}
