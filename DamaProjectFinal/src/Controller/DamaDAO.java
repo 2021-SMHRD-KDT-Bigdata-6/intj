@@ -123,7 +123,7 @@ public class DamaDAO {
 		return list;
 	}
 
-	public void register(DamaVO damavo) { // 캐릭터 생성
+	public void register(DamaVO damavo,String userid) { // 캐릭터 생성
 		getConn();
 
 		try {
@@ -134,7 +134,7 @@ public class DamaDAO {
 			psmt.setString(3, Integer.toString(damavo.getExp()));
 			psmt.setString(4, Integer.toString(damavo.getLv()));
 			psmt.setString(5, Integer.toString(damavo.getEnergy()));
-			psmt.setString(6, damavo.getId());
+			psmt.setString(6, userid);
 			psmt.setString(7, Integer.toString(damavo.getDay()));
 			psmt.executeUpdate();
 		} catch (SQLException e) {

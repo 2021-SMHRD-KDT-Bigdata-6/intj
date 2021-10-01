@@ -47,7 +47,7 @@ public class Damaconn {
 		int day = 1;
 
 		DamaVO damavo = new DamaVO(nick, type, exp, lv, energy, type, day);
-		damadao.register(damavo);
+		damadao.register(damavo,id);
 		return damavo;
 	}
 
