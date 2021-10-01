@@ -170,7 +170,7 @@ public class Damaconn {
 
 	public void rankUp() {
 		ArrayList<DamaVO> list = damadao.rankUp();
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < 10; i++) {
 			System.out.println(list.get(i));
 		}
 
