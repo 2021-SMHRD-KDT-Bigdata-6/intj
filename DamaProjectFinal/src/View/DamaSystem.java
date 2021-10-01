@@ -33,8 +33,7 @@ public class DamaSystem {
 
 			if (input == 1) {
 				System.out.println("==========로그인==========");
-				userid =member.login();
-
+				userid = member.login();
 
 			} else if (input == 2) {
 				System.out.println("===========회원가입==========");
@@ -55,7 +54,6 @@ public class DamaSystem {
 				if (select == 1) {
 					damaconn.register(userid);
 
-					
 					break;
 				} else if (select == 2) {
 
@@ -71,7 +69,8 @@ public class DamaSystem {
 				} else if (select == 4) {
 
 					System.out.println("님의 현재 순위입니다."); // 랭킹 페이지 표시
-					System.out.print("별명    점수    순위"); // 닉값, 랭킹 값 받아와서 출
+
+					damaconn.rankUp();
 
 				} else if (select == 5) {
 					damaconn.close();

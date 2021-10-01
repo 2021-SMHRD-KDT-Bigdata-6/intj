@@ -169,6 +169,15 @@ public class Damaconn {
 			System.out.println("축하합니다!! 레벨이 상승하였습니다.");
 		}
 	}
+	public void rankUp() {
+		ArrayList<DamaVO> list = damadao.rankUp();
+		for(int i =0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+		
+		
+		
+	}
 	
 	public void close() {
 		System.out.println("게임을 종료합니다.");

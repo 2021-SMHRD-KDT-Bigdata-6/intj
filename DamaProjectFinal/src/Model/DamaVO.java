@@ -11,6 +11,11 @@ public class DamaVO {
 	private int day;
 	
 	
+	@Override
+	public String toString() {
+		return "DamaVO [id=" + id + ", nick=" + nick + ", type=" + type + ", exp=" + exp + ", lv=" + lv + ", energy="
+				+ energy + ", day=" + day + "]";
+	}
 	public DamaVO(String id, String nick, int lv, String type, int day) {
 		this.id =id;
 		this.nick = nick;
