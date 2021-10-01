@@ -138,7 +138,7 @@ public class DamaDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, damavo.getNick());
 			psmt.setString(2, damavo.getType());
-			psmt.setString(3, damavo.getExp());
+			psmt.setString(3, Integer.toString(damavo.getExp()));
 			psmt.setString(4, Integer.toString(damavo.getLv()));
 			psmt.setString(5, Integer.toString(damavo.getEnergy()));
 			psmt.setString(6, damavo.getId());
@@ -157,7 +157,7 @@ public class DamaDAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
-			psmt.setString(2, damavo.getExp());
+			psmt.setString(2, Integer.toString(damavo.getExp()));
 			// 3.전송
 			psmt.executeUpdate();
 
@@ -176,7 +176,7 @@ public class DamaDAO {
 			String sql = "update dama set energy = ?, exp = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
-			psmt.setString(2, damavo.getExp());
+			psmt.setString(2, Integer.toString(damavo.getExp()));
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
@@ -192,7 +192,7 @@ public class DamaDAO {
 			String sql = "update dama set energy = ?, exp = ? where id = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
-			psmt.setString(2, damavo.getExp());
+			psmt.setString(2, Integer.toString(damavo.getExp()));
 			psmt.setString(3,damavo.getId());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
@@ -208,7 +208,7 @@ public class DamaDAO {
 			String sql = "update dama set day = ?, exp = ? where id = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getDay()));
-			psmt.setString(2,damavo.getExp());
+			psmt.setString(2,Integer.toString(damavo.getExp()));
 			psmt.setString(3,damavo.getId());
 			psmt.executeUpdate();
 		} catch (SQLException e) {

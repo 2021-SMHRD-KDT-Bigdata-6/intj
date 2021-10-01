@@ -41,7 +41,7 @@ public class Damaconn {
 			System.out.println("다시 입력해주세요");
 		}
 	
-		String exp = "0";
+		int exp = 0;
 		int energy = 0;
 		int lv = 0;
 		int day = 0;
@@ -163,9 +163,9 @@ public class Damaconn {
 	
 
 	public void level(DamaVO damavo) {
-		if (Integer.parseInt(damavo.getExp()) >= 100) {
+		if (damavo.getExp() >= 100) {
 			damavo.setLv(damavo.getLv() + 1);
-			damavo.setExp(Integer.toString(Integer.parseInt(damavo.getExp()) - 100));
+			damavo.setExp(damavo.getExp() - 100);
 			System.out.println("레벨 : " + damavo.getLv() + "달성!");
 			System.out.println("축하합니다!! 레벨이 상승하였습니다.");
 		}
