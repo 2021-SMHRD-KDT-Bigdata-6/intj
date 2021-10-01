@@ -31,25 +31,16 @@ public class DamaSystem {
 			int input = sc.nextInt();
 
 			if (input == 1) {
-				System.out.println("==========로그인==========");
 				member.login();
 
-				String id = null;
-				String pw = null;
-				MemberVO memvo = new MemberVO(id, pw);
-				MemberVO info = damadao.login(memvo);
-
 			} else if (input == 2) {
-				System.out.println("===========회원가입==========");
 				member.join();
-				System.out.println("회원가입이 완료되었습니다~!");
-
+			
 			} else if (input == 3) {
 				damaconn.close();
-
-			} else {
-				System.out.println("숫자를 다시 입력해주세요.");
-			}
+			
+			} 
+				
 
 			while (true) {
 				System.out.println("[1]다마고치 등록 [2]다마고치 키우기 [3]다마고치 상태확인 [4]랭킹확인 [5]종료 >> ");

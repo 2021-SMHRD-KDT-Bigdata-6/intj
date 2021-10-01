@@ -78,16 +78,10 @@ public class DamaDAO {
 			psmt.setString(1, vo.getId());
 			psmt.setString(2, vo.getPw());
 			rs = psmt.executeQuery();
+			
 			if (rs.next()) {
 				String id = rs.getString("id");
 				String pw = rs.getString("password");
-//				if(id.equals(rs.getString("id")) && pw.equals( rs.getString("password"))) {
-//					System.out.println("로그인 성공!");
-//				}else {
-//					System.out.println("로그인 실패.. 다시 입력해주세요!");
-//			
-//				}
-
 				info = new MemberVO(id, pw);
 			}
 

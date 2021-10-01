@@ -11,6 +11,7 @@ public class Memberconn {
 	Scanner sc = new Scanner(System.in);
 
 	public void login() {       // 로그인 기능
+		System.out.println("==========로그인==========");
 		System.out.print("ID 입력 : ");
 		String id = sc.next();
 		System.out.print("Password 입력 : ");
@@ -27,8 +28,9 @@ public class Memberconn {
 
 	}
 	
-	// 회원가입 기능
-	public void join() {
+	
+	public void join() {    // 회원가입 기능
+		System.out.println("===========회원가입==========");
 		System.out.print("ID 입력 : ");
 		String id = sc.next();
 		System.out.print("Password 입력 : ");
@@ -37,10 +39,15 @@ public class Memberconn {
 		int cnt = damadao.join(membervo);
 		
 		if (cnt > 0) {
-			System.out.println("회원가입 성공!");
+			System.out.println("회원가입이 완료되었습니다~!");
 		} else {
 			System.out.println("회원가입 실패...");
+			System.out.print("ID 입력 : ");
+			String id1 = sc.next();
+			System.out.print("Password 입력 : ");
+			String pw2 = sc.next();
 		}
+		
 		
 	}
 
