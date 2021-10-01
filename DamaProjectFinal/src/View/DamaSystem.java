@@ -25,7 +25,6 @@ public class DamaSystem {
 		int deforeday = 0;
 		int count = 0;
 		int day = 1;
-		String userid = "";
 
 		while (true) {
 			System.out.print("[1]로그인 [2]회원가입 [3]종료 >> ");
@@ -33,26 +32,33 @@ public class DamaSystem {
 
 			if (input == 1) {
 				System.out.println("==========로그인==========");
+<<<<<<< HEAD
 				userid = member.login();
+=======
+				member.login();
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 
 			} else if (input == 2) {
-				System.out.println("===========회원가입==========");
+				System.out.println("==========회원가입==========");
 				member.join();
 
 			} else if (input == 3) {
 				damaconn.close();
 
-			} else {
-				System.out.println("숫자를 다시 입력해주세요.");
 			}
 
 			while (true) {
-				System.out.print("[1]다마고치 등록 [2]다마고치 키우기 [3]다마고치 상태확인 [4]랭킹확인 [5]종료 >> ");
+				System.out.println("[1]다마고치 등록 [2]다마고치 키우기 [3]다마고치 상태확인 [4]랭킹확인 [5]종료 >> ");
 				int select = sc.nextInt();
 
 				if (select == 1) {
+<<<<<<< HEAD
 					damanow=damaconn.register(userid);
 					
+=======
+					damaconn.register();
+
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 					break;
 				} else if (select == 2) {
 
@@ -76,7 +82,8 @@ public class DamaSystem {
 				} else if (select == 4) {
 
 					System.out.println("님의 현재 순위입니다."); // 랭킹 페이지 표시
-					System.out.print("별명    점수    순위"); // 닉값, 랭킹 값 받아와서 출
+
+					damaconn.rankUp();
 
 				} else if (select == 5) {
 					damaconn.close();
@@ -207,6 +214,5 @@ public class DamaSystem {
 				}
 			}
 		}
-
 	}
 }

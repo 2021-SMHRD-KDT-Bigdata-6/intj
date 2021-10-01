@@ -10,7 +10,16 @@ public class DamaVO {
 	private int energy;
 	private int day;
 	
+<<<<<<< HEAD
 		
+=======
+	
+	@Override
+	public String toString() {
+		return "DamaVO [id=" + id + ", nick=" + nick + ", type=" + type + ", exp=" + exp + ", lv=" + lv + ", energy="
+				+ energy + ", day=" + day + "]";
+	}
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 	public DamaVO(String id, String nick, int lv, String type, int day) {
 		this.id =id;
 		this.nick = nick;

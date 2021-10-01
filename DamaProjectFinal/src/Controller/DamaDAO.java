@@ -48,7 +48,7 @@ public class DamaDAO {
 		}
 	}
 
-	public int join(MemberVO vo) {       // 회원가입
+	public int join(MemberVO vo) { // 회원가입
 		int cnt = 0;
 		getConn();
 		try {
@@ -67,7 +67,7 @@ public class DamaDAO {
 		return cnt;
 	}
 
-	public MemberVO login(MemberVO vo) {         // 로그인
+	public MemberVO login(MemberVO vo) { // 로그인
 		MemberVO info = null;
 		getConn();
 
@@ -78,21 +78,16 @@ public class DamaDAO {
 			psmt.setString(1, vo.getId());
 			psmt.setString(2, vo.getPw());
 			rs = psmt.executeQuery();
+
 			if (rs.next()) {
 				String id = rs.getString("id");
 				String pw = rs.getString("password");
-//				if(id.equals(rs.getString("id")) && pw.equals( rs.getString("password"))) {
-//					System.out.println("로그인 성공!");
-//				}else {
-//					System.out.println("로그인 실패.. 다시 입력해주세요!");
-//			
-//				}
-
 				info = new MemberVO(id, pw);
 			}
 
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");;
+			System.out.println("데이터 오류가 있음");
+			;
 		} finally {
 			close();
 		}
@@ -104,12 +99,13 @@ public class DamaDAO {
 		ArrayList<DamaVO> list = new ArrayList<DamaVO>();
 		getConn();
 
-		String sql = "select * from dama orderdy day, lv";
+		String sql = "select * from dama order by lv, damadate desc";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				int i = 0;
+<<<<<<< HEAD
 				if(i<10) {
 				String id = rs.getString("id");
 				String nick = rs.getString("nick");
@@ -121,6 +117,16 @@ public class DamaDAO {
 				DamaVO vo = new DamaVO(id, nick, lv, exp, type, day);
 				list.add(vo);
 				
+=======
+				if (i < 10) {
+					String id = rs.getString("id");
+					String nick = rs.getString("nick");
+					int lv = rs.getInt("lv");
+					String type = rs.getString("type");
+					DamaVO vo = new DamaVO(id, nick, lv, type, lv);
+					list.add(vo);
+
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 				}
 			}
 		} catch (SQLException e) {
@@ -131,9 +137,10 @@ public class DamaDAO {
 
 		return list;
 	}
+
 	public void register(DamaVO damavo) { // 캐릭터 생성
 		getConn();
-		
+
 		try {
 			String sql = "insert into dama values(?,?,?,?,?,?,?)";
 			psmt = conn.prepareStatement(sql);
@@ -151,7 +158,12 @@ public class DamaDAO {
 			close();
 		}
 	}
+<<<<<<< HEAD
 	public void study(DamaVO damavo,String userid) {  // 공부하기
+=======
+
+	public void study(DamaVO damavo) { // 공부하기
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 		getConn();
 
 		String sql = "update dama set energy = ?, exp = ? where id = ? and nick = ?";
@@ -171,8 +183,13 @@ public class DamaDAO {
 		}
 
 	}
+<<<<<<< HEAD
 	
 	public void workout(DamaVO damavo,String userid) {     // 운동하기
+=======
+
+	public void workout(DamaVO damavo) { // 운동하기
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 
 		try {
 			getConn();
@@ -198,9 +215,13 @@ public class DamaDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));
+<<<<<<< HEAD
 			psmt.setString(3,userid);
 			psmt.setString(4,damavo.getNick());
 			
+=======
+			psmt.setString(3, damavo.getId());
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
@@ -209,14 +230,14 @@ public class DamaDAO {
 		}
 	}
 
-	public void sleepUP(DamaVO damavo) {   // 잠자기
+	public void sleepUP(DamaVO damavo) { // 잠자기
 		getConn();
 		try {
 			String sql = "update dama set day = ?, exp = ? where id = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getDay()));
-			psmt.setString(2,Integer.toString(damavo.getExp()));
-			psmt.setString(3,damavo.getId());
+			psmt.setString(2, Integer.toString(damavo.getExp()));
+			psmt.setString(3, damavo.getId());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
@@ -224,23 +245,24 @@ public class DamaDAO {
 			close();
 		}
 	}
-	
-	public void levelUp(DamaVO damavo) {   // 레벨업
+
+	public void levelUp(DamaVO damavo) { // 레벨업_
 		getConn();
-		
+
 		try {
 			String sql = "update dama set level = ? where id =?";
-			psmt= conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getLv()));
 			psmt.setString(2, damavo.getId());
 			psmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
 		} finally {
 			close();
 		}
 	}
+<<<<<<< HEAD
 	
 	public ArrayList<DamaVO> nowUp(String id) {
 		ArrayList<DamaVO> list = new ArrayList<DamaVO>();
@@ -274,3 +296,7 @@ public class DamaDAO {
 
 
 
+=======
+
+}
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
