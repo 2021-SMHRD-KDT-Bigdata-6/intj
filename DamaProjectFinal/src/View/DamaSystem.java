@@ -25,6 +25,7 @@ public class DamaSystem {
 		int deforeday = 0;
 		int count = 0;
 		int day = 1;
+		String userid = "";
 
 		while (true) {
 			System.out.print("[1]로그인 [2]회원가입 [3]종료 >> ");
@@ -32,12 +33,8 @@ public class DamaSystem {
 
 			if (input == 1) {
 				System.out.println("==========로그인==========");
-				member.login();
+				userid =member.login();
 
-				String id = null;
-				String pw = null;
-				MemberVO memvo = new MemberVO(id, pw);
-				MemberVO info = damadao.login(memvo);
 
 			} else if (input == 2) {
 				System.out.println("===========회원가입==========");
@@ -52,11 +49,11 @@ public class DamaSystem {
 			}
 
 			while (true) {
-				System.out.println("[1]다마고치 등록 [2]다마고치 키우기 [3]다마고치 상태확인 [4]랭킹확인 [5]종료 >> ");
+				System.out.print("[1]다마고치 등록 [2]다마고치 키우기 [3]다마고치 상태확인 [4]랭킹확인 [5]종료 >> ");
 				int select = sc.nextInt();
 
 				if (select == 1) {
-					damaconn.register();
+					damaconn.register(userid);
 
 					
 					break;

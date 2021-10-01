@@ -23,6 +23,7 @@ public class DamaVO {
 		this.type = type;
 		this.lv = lv;
 		this.energy = energy;
+		this.id = id;
 		this.day = day;
 	}
 

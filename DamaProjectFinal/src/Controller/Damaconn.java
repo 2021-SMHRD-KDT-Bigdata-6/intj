@@ -18,7 +18,7 @@ public class Damaconn {
 	Scanner sc = new Scanner(System.in);
 	Random ran = new Random();
 
-	public void register() {
+	public void register(String id) {
 		System.out.println("=== 닉네임을 설정해주세요 ===");
 		System.out.print("별명 정하기 : ");
 		String nick = sc.next();
@@ -40,12 +40,11 @@ public class Damaconn {
 		} else {
 			System.out.println("다시 입력해주세요");
 		}
-	
+		System.out.println("「"+type+"」"+"을 골라주셨어요!");
 		int exp = 0;
 		int energy = 0;
 		int lv = 0;
-		int day = 0;
-		String id = memvo.getId();
+		int day = 1;
 		DamaVO damavo = new DamaVO(nick, type, exp, lv, energy, id, day);
 		damadao.register(damavo);
 	}
