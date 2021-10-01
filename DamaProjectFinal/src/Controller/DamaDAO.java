@@ -105,19 +105,6 @@ public class DamaDAO {
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				int i = 0;
-<<<<<<< HEAD
-				if(i<10) {
-				String id = rs.getString("id");
-				String nick = rs.getString("nick");
-				int lv = rs.getInt("lv");
-				int exp = rs.getInt("exp");
-				String type = rs.getString("type");
-				int day = rs.getInt("day");
-				
-				DamaVO vo = new DamaVO(id, nick, lv, exp, type, day);
-				list.add(vo);
-				
-=======
 				if (i < 10) {
 					String id = rs.getString("id");
 					String nick = rs.getString("nick");
@@ -125,8 +112,6 @@ public class DamaDAO {
 					String type = rs.getString("type");
 					DamaVO vo = new DamaVO(id, nick, lv, type, lv);
 					list.add(vo);
-
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 				}
 			}
 		} catch (SQLException e) {
@@ -158,12 +143,7 @@ public class DamaDAO {
 			close();
 		}
 	}
-<<<<<<< HEAD
 	public void study(DamaVO damavo,String userid) {  // 공부하기
-=======
-
-	public void study(DamaVO damavo) { // 공부하기
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 		getConn();
 
 		String sql = "update dama set energy = ?, exp = ? where id = ? and nick = ?";
@@ -183,13 +163,8 @@ public class DamaDAO {
 		}
 
 	}
-<<<<<<< HEAD
 	
 	public void workout(DamaVO damavo,String userid) {     // 운동하기
-=======
-
-	public void workout(DamaVO damavo) { // 운동하기
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 
 		try {
 			getConn();
@@ -215,13 +190,9 @@ public class DamaDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));
-<<<<<<< HEAD
 			psmt.setString(3,userid);
 			psmt.setString(4,damavo.getNick());
 			
-=======
-			psmt.setString(3, damavo.getId());
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
@@ -262,7 +233,6 @@ public class DamaDAO {
 			close();
 		}
 	}
-<<<<<<< HEAD
 	
 	public ArrayList<DamaVO> nowUp(String id) {
 		ArrayList<DamaVO> list = new ArrayList<DamaVO>();
@@ -296,7 +266,3 @@ public class DamaDAO {
 
 
 
-=======
-
-}
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git

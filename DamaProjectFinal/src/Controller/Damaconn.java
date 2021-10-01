@@ -18,11 +18,7 @@ public class Damaconn {
 	Scanner sc = new Scanner(System.in);
 	Random ran = new Random();
 
-<<<<<<< HEAD
 	public DamaVO register(String id) {
-=======
-	public void register() {
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 		System.out.println("=== 닉네임을 설정해주세요 ===");
 		System.out.print("별명 정하기 : ");
 		String nick = sc.next();
@@ -97,20 +93,12 @@ public class Damaconn {
 		if (damavo.getType().equals("영웅")) {
 			if (num2 == 1) {
 				damavo.setEnergy(damavo.getEnergy() - 20);
-<<<<<<< HEAD
 				damavo.setExp((int) (damavo.getExp() + 15 * 1.5));
-=======
-				damavo.setEnergy((int) (damavo.getExp() + 15 * 1.5));
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 
 			} else {
 				damavo.setEnergy(damavo.getEnergy() - 20);
-<<<<<<< HEAD
 				damavo.setExp(damavo.getExp() + 15);
 
-=======
-				damavo.setEnergy(damavo.getExp() + 15);
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 			}
 			damadao.study(damavo, userid);
 
@@ -187,18 +175,12 @@ public class Damaconn {
 			System.out.println("축하합니다!! 레벨이 상승하였습니다.");
 		}
 	}
-
-<<<<<<< HEAD
-=======
 	public void rankUp() {
 		ArrayList<DamaVO> list = damadao.rankUp();
 		for (int i = 0; i < 10; i++) {
 			System.out.println(list.get(i));
 		}
-
 	}
-
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 	public void close() {
 		System.out.println("게임을 종료합니다.");
 		System.exit(0);

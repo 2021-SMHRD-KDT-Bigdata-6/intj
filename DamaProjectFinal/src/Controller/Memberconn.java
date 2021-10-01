@@ -11,7 +11,7 @@ public class Memberconn {
 	Scanner sc = new Scanner(System.in);
 	Damaconn damaconn = new Damaconn();
 
-	public void login() { // 로그인 기능
+	public  String login() { // 로그인 기능
 		System.out.print("ID 입력 : ");
 		String id = sc.next();
 		System.out.print("Password 입력 : ");
@@ -44,6 +44,7 @@ public class Memberconn {
 
 			}
 		}
+		return info.getId();
 	}
 
 	public void join() { // 회원가입 기능

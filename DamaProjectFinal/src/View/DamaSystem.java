@@ -22,6 +22,7 @@ public class DamaSystem {
 		DamaVO damavo = new DamaVO();
 		Memberconn member = new Memberconn();
 		DamaVO damanow = null;
+		String userid = null;
 		int deforeday = 0;
 		int count = 0;
 		int day = 1;
@@ -32,11 +33,7 @@ public class DamaSystem {
 
 			if (input == 1) {
 				System.out.println("==========로그인==========");
-<<<<<<< HEAD
 				userid = member.login();
-=======
-				member.login();
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 
 			} else if (input == 2) {
 				System.out.println("==========회원가입==========");
@@ -52,13 +49,8 @@ public class DamaSystem {
 				int select = sc.nextInt();
 
 				if (select == 1) {
-<<<<<<< HEAD
 					damanow=damaconn.register(userid);
 					
-=======
-					damaconn.register();
-
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-Bigdata-6/intj.git
 					break;
 				} else if (select == 2) {
 
