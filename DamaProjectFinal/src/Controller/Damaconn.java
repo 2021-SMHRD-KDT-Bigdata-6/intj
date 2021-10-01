@@ -60,7 +60,7 @@ public class Damaconn {
 		}
 	}
 
-	public void goalfail(int getEnergey) {
+	public void goalfail(DamaVO damavo) {
 		if (damavo.getEnergy() <= 0) {
 			System.out.println("-체력이 0이하로 떨어졌습니다-");
 			System.out.println("취업도 좋지만 건강도 생각을 ㅠㅠ 다시시작하세요!");

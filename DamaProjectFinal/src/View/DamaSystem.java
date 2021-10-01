@@ -117,8 +117,8 @@ public class DamaSystem {
 							
 							damaconn.study(damanow, num2, userid);
 							damaconn.level(damanow, userid);
-							// damaconn.goalsuc(damavo.getLv());
-							// damaconn.goalfail(damavo.getEnergy());
+							 damaconn.goalsuc(damanow);
+							damaconn.goalfail(damanow);
 
 						} else if (num == 2) {
 							System.out.println("열심히 운동을 합시다!");
@@ -145,6 +145,8 @@ public class DamaSystem {
 							}
 							damaconn.workout(damanow,num2,userid);
 							damaconn.level(damanow, userid);
+							 damaconn.goalsuc(damanow);
+								damaconn.goalfail(damanow);
 //               damaconn.goalsuc(damavo.getLv());
 //               damaconn.goalfail(damavo.getEnergy());
 						} else if (num == 3) {
@@ -188,6 +190,7 @@ public class DamaSystem {
 							}
 							damaconn.eat(damavo, num2, userid);
 							damaconn.level(damanow, userid);
+							 damaconn.goalsuc(damanow);
 						} else if (num == 4) {
 							damaconn.sleep();
 							day++;
