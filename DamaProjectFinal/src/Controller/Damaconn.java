@@ -92,11 +92,11 @@ public class Damaconn {
 		if (damavo.getNick() == "¿µ¿õ") {
 			if (num1 == 1) {
 				damavo.setEnergy(damavo.getEnergy() - 20);
-				damavo.setEnergy((int) (damavo.getEnergy() + 15 * 1.5));
+				damavo.setEnergy((int) (damavo.getExp() + 15 * 1.5));
 
 			} else {
 				damavo.setEnergy(damavo.getEnergy() - 20);
-				damavo.setEnergy(damavo.getEnergy() + 15);
+				damavo.setEnergy(damavo.getExp() + 15);
 			}
 
 		}
@@ -108,11 +108,11 @@ public class Damaconn {
 			if (num2 == 1) {
 
 				damavo.setEnergy(damavo.getEnergy() - 35);
-				damavo.setEnergy((int) (damavo.getEnergy() + 30 * 1.5));
+				damavo.setEnergy((int) (damavo.getExp() + 30 * 1.5));
 
 			} else {
 				damavo.setEnergy(damavo.getEnergy() - 35);
-				damavo.setEnergy(damavo.getEnergy() + 30);
+				damavo.setEnergy(damavo.getExp() + 30);
 			}
 		}
 
@@ -123,11 +123,11 @@ public class Damaconn {
 		if (damavo.getNick() == "¸íÀº") {
 			if (num2 == 3) {
 				damavo.setEnergy(damavo.getEnergy() - 35);
-				damavo.setEnergy((int) (damavo.getEnergy() + 30 * 1.5));
+				damavo.setEnergy((int) (damavo.getExp() + 30 * 1.5));
 
 			} else {
 				damavo.setEnergy(damavo.getEnergy() - 35);
-				damavo.setEnergy(damavo.getEnergy() + 30);
+				damavo.setEnergy(damavo.getExp() + 30);
 			}
 		}
 
@@ -139,11 +139,11 @@ public class Damaconn {
 			if (num3 == 2) {
 
 				damavo.setEnergy(damavo.getEnergy() + 25);
-				damavo.setEnergy((int) (damavo.getEnergy() + 5 * 1.5));
+				damavo.setEnergy((int) (damavo.getExp() + 5 * 1.5));
 
 			} else {
 				damavo.setEnergy(damavo.getEnergy() - 25);
-				damavo.setEnergy(damavo.getEnergy() + 5);
+				damavo.setEnergy(damavo.getExp() + 5);
 			}
 		}
 

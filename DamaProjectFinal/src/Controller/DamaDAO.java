@@ -213,7 +213,7 @@ public class DamaDAO {
 		}
 	}
 
-	public void levelUp(DamaVO damavo) { // 레벨업
+	public void levelUp(DamaVO damavo) { // 레벨업_
 		getConn();
 
 		try {
