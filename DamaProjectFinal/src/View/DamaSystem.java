@@ -31,15 +31,18 @@ public class DamaSystem {
 			int input = sc.nextInt();
 
 			if (input == 1) {
-				member.login();
+				System.out.println("==========로그인==========");
+				userid=member.login();
 
 			} else if (input == 2) {
+				System.out.println("==========회원가입==========");
 				member.join();
 			
 			} else if (input == 3) {
 				damaconn.close();
 			
 			} 
+		}
 				
 
 			while (true) {
@@ -47,8 +50,7 @@ public class DamaSystem {
 				int select = sc.nextInt();
 
 				if (select == 1) {
-					damaconn.register();
-
+					damaconn.register(userid);
 					
 					break;
 				} else if (select == 2) {
@@ -196,4 +198,3 @@ public class DamaSystem {
 		}
 
 	}
-}
