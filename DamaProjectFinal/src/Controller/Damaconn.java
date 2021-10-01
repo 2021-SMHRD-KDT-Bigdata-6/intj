@@ -18,7 +18,7 @@ public class Damaconn {
 	Scanner sc = new Scanner(System.in);
 	Random ran = new Random();
 
-	public void register(String id) {
+	public DamaVO register(String id) {
 		System.out.println("=== 닉네임을 설정해주세요 ===");
 		System.out.print("별명 정하기 : ");
 		String nick = sc.next();
@@ -40,15 +40,15 @@ public class Damaconn {
 		} else {
 			System.out.println("다시 입력해주세요");
 		}
-		System.out.println("「"+type+"」"+"을 골라주셨어요!");
+		System.out.println("「" + type + "」" + "을 골라주셨어요!");
 		int exp = 0;
 		int energy = 0;
 		int lv = 0;
 		int day = 1;
 		DamaVO damavo = new DamaVO(nick, type, exp, lv, energy, id, day);
 		damadao.register(damavo);
+		return damavo;
 	}
-	
 
 	public void goalsuc(DamaVO damavo) {
 		if (damavo.getLv() == 10) {
@@ -71,40 +71,46 @@ public class Damaconn {
 		System.out.println("오늘도 수고했어요!!");
 		System.out.println("-체력과 식사횟수가 충전됩니다.-");
 	}
-	
-	public void music() {    // 음악재생
-		   MP3Player mp3 = new MP3Player();
-           String path = getClass().getResource("").getPath();
-           mp3.play(path + "Blossom.mp3");
-           Thread th = new Thread();
-           try {
-              th.sleep(5000);
-           } catch (InterruptedException e) {
-              e.printStackTrace();
-           }
-           mp3.stop();
-		
+
+	public void music() { // 음악재생
+		MP3Player mp3 = new MP3Player();
+		String path = getClass().getResource("").getPath();
+		mp3.play(path + "Blossom.mp3");
+		Thread th = new Thread();
+		try {
+			th.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		mp3.stop();
+
 	}
 
 	// 보너스 에너지값 정의
-	public void study(int num1) {
+	public void study(DamaVO damavo, int num2, String userid) {
 
-		if (damavo.getNick() == "영웅") {
-			if (num1 == 1) {
+		if (damavo.getType().equals("영웅")) {
+			if (num2 == 1) {
 				damavo.setEnergy(damavo.getEnergy() - 20);
-				damavo.setEnergy((int) (damavo.getEnergy() + 15 * 1.5));
+				damavo.setExp((int) (damavo.getExp() + 15 * 1.5));
 
 			} else {
 				damavo.setEnergy(damavo.getEnergy() - 20);
-				damavo.setEnergy(damavo.getEnergy() + 15);
+				damavo.setExp(damavo.getExp() + 15);
+
 			}
+			damadao.study(damavo, userid);
 
-		}
+		}else {
+			damavo.setEnergy(damavo.getEnergy() - 20);
+			damavo.setExp(damavo.getExp() + 15);
+			damadao.study(damavo, userid);
 	}
+		
+	}
+	public void workout(DamaVO damavo, int num2, String userid) {
 
-	public void workout(int num2) {
-
-		if (damavo.getNick() == "효주") {
+		if (damavo.getType().equals("효주")) {
 			if (num2 == 1) {
 
 				damavo.setEnergy(damavo.getEnergy() - 35);
@@ -114,13 +120,7 @@ public class Damaconn {
 				damavo.setEnergy(damavo.getEnergy() - 35);
 				damavo.setEnergy(damavo.getEnergy() + 30);
 			}
-		}
-
-	}
-
-	public void workout1(int num2) {
-
-		if (damavo.getNick() == "명은") {
+		} else if (damavo.getType().equals("명은")) {
 			if (num2 == 3) {
 				damavo.setEnergy(damavo.getEnergy() - 35);
 				damavo.setEnergy((int) (damavo.getEnergy() + 30 * 1.5));
@@ -129,11 +129,15 @@ public class Damaconn {
 				damavo.setEnergy(damavo.getEnergy() - 35);
 				damavo.setEnergy(damavo.getEnergy() + 30);
 			}
+			
+		}else {
+			damavo.setEnergy(damavo.getEnergy() - 35);
+			damavo.setEnergy(damavo.getEnergy() + 30);
 		}
-
+		damadao.workout(damavo, userid);
 	}
 
-	public void eat(int num3) {
+	public void eat(DamaVO damavo, int num3, String userid) {
 
 		if (damavo.getNick() == "승신") {
 			if (num3 == 2) {
@@ -145,8 +149,11 @@ public class Damaconn {
 				damavo.setEnergy(damavo.getEnergy() - 25);
 				damavo.setEnergy(damavo.getEnergy() + 5);
 			}
+		}else {
+			damavo.setEnergy(damavo.getEnergy() - 25);
+			damavo.setEnergy(damavo.getEnergy() + 5);
 		}
-
+		damadao.eatingUP(damavo, userid);
 	}
 
 	public void needs() {
@@ -159,8 +166,6 @@ public class Damaconn {
 
 	}
 
-	
-
 	public void level(DamaVO damavo) {
 		if (damavo.getExp() >= 100) {
 			damavo.setLv(damavo.getLv() + 1);
@@ -169,7 +174,7 @@ public class Damaconn {
 			System.out.println("축하합니다!! 레벨이 상승하였습니다.");
 		}
 	}
-	
+
 	public void close() {
 		System.out.println("게임을 종료합니다.");
 		System.exit(0);

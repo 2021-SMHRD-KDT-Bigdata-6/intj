@@ -10,7 +10,7 @@ public class DamaVO {
 	private int energy;
 	private int day;
 	
-	
+		
 	public DamaVO(String id, String nick, int lv, String type, int day) {
 		this.id =id;
 		this.nick = nick;
@@ -21,6 +21,7 @@ public class DamaVO {
 	public DamaVO(String nick, String type, int exp, int lv, int energy, String id, int day) {
 		this.nick = nick;
 		this.type = type;
+		this.exp=exp;
 		this.lv = lv;
 		this.energy = energy;
 		this.id = id;
@@ -40,6 +41,18 @@ public class DamaVO {
 	public DamaVO(String nick, String type) {
 		this.nick = nick;
 		this.type = type;
+	}
+
+
+
+
+	public DamaVO(String id, String nick, int lv, int exp, String type, int day) {
+		this.id = id;
+		this.nick = nick;
+		this.lv=lv;
+		this.exp = exp;
+		this.type = type;
+		this.day = day;
 	}
 
 

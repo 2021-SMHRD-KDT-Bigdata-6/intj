@@ -31,4 +31,5 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 
+
 }

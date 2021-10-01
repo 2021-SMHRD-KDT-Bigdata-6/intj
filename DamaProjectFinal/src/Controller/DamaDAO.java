@@ -114,10 +114,11 @@ public class DamaDAO {
 				String id = rs.getString("id");
 				String nick = rs.getString("nick");
 				int lv = rs.getInt("lv");
+				int exp = rs.getInt("exp");
 				String type = rs.getString("type");
 				int day = rs.getInt("day");
-
-				DamaVO vo = new DamaVO(id, nick, lv, type, day);
+				
+				DamaVO vo = new DamaVO(id, nick, lv, exp, type, day);
 				list.add(vo);
 				
 				}
@@ -150,50 +151,56 @@ public class DamaDAO {
 			close();
 		}
 	}
-	public void study(DamaVO damavo) {  // 공부하기
+	public void study(DamaVO damavo,String userid) {  // 공부하기
 		getConn();
 
-		String sql = "update dama set energy = ?, exp = ? ";
+		String sql = "update dama set energy = ?, exp = ? where id = ? and nick = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));
+			psmt.setString(3,userid);
+			psmt.setString(4, damavo.getNick());
 			// 3.전송
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");
+			e.printStackTrace();
 		} finally {
 			close();
 		}
 
 	}
 	
-	public void workout(DamaVO damavo) {     // 운동하기
+	public void workout(DamaVO damavo,String userid) {     // 운동하기
 
 		try {
 			getConn();
-			String sql = "update dama set energy = ?, exp = ?";
+			String sql = "update dama set energy = ?, exp = ? where id = ? and nick =?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));
+			psmt.setString(3, userid);
+			psmt.setString(4, damavo.getNick());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("데이터 오류가 있음");
+			e.printStackTrace();
 		} finally {
 			close();
 		}
 
 	}
 
-	public void eatingUP(DamaVO damavo) {
+	public void eatingUP(DamaVO damavo,String userid) {
 		getConn();
 		try {
-			String sql = "update dama set energy = ?, exp = ? where id = ?";
+			String sql = "update dama set energy = ?, exp = ? where id = ?,nick = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Integer.toString(damavo.getEnergy()));
 			psmt.setString(2, Integer.toString(damavo.getExp()));
-			psmt.setString(3,damavo.getId());
+			psmt.setString(3,userid);
+			psmt.setString(4,damavo.getNick());
+			
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("데이터 오류가 있음");
@@ -235,4 +242,35 @@ public class DamaDAO {
 		}
 	}
 	
-}
+	public ArrayList<DamaVO> nowUp(String id) {
+		ArrayList<DamaVO> list = new ArrayList<DamaVO>();
+		getConn();
+		try {
+			String sql = "select nick,id,lv,exp,energy,type,damadate from dama where id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs=psmt.executeQuery();
+			while (rs.next()) {
+				String nick = rs.getString("nick");
+				id = rs.getString("id");
+				int lv = rs.getInt("lv");
+				int exp = rs.getInt("exp");
+				int energy = rs.getInt("energy");
+				String type = rs.getString("type");
+				int day = rs.getInt("damadate");
+				DamaVO damavo = new DamaVO(nick,id,lv,exp,energy,type,day);
+				list.add(damavo);
+		}
+			}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+
+		}
+		return list;
+		}
+	}
+
+
+

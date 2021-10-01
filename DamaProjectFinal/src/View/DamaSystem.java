@@ -21,7 +21,7 @@ public class DamaSystem {
 		DamaDAO damadao = new DamaDAO();
 		DamaVO damavo = new DamaVO();
 		Memberconn member = new Memberconn();
-
+		DamaVO damanow = null;
 		int deforeday = 0;
 		int count = 0;
 		int day = 1;
@@ -33,13 +33,11 @@ public class DamaSystem {
 
 			if (input == 1) {
 				System.out.println("==========로그인==========");
-				userid =member.login();
-
+				userid = member.login();
 
 			} else if (input == 2) {
 				System.out.println("===========회원가입==========");
 				member.join();
-				System.out.println("회원가입이 완료되었습니다~!");
 
 			} else if (input == 3) {
 				damaconn.close();
@@ -53,21 +51,28 @@ public class DamaSystem {
 				int select = sc.nextInt();
 
 				if (select == 1) {
-					damaconn.register(userid);
-
+					damanow=damaconn.register(userid);
 					
 					break;
 				} else if (select == 2) {
 
 					System.out.println("=== 부지런한 생활로 꼭 취준에 성공하자! ===");
 					System.out.println("=== 무엇부터 시작해 볼까요? === ");
+					// 현재 내 아이디를 기준으로 내 다마고치를 찾아오기
+					ArrayList<DamaVO> list = damadao.nowUp(userid);
+					if (list != null)
+						damanow = list.get(0);
 					break;
+
 				} else if (select == 3) {
-
-					System.out.println(); // 다마고치 상세 페이지 표시
-					System.out.println("님의 현재 상태입니다. ");
-					System.out.println("경험치   레벨   에너지   날짜 "); // 각각의 데이터 받아서 출력
-
+					ArrayList<DamaVO> list = damadao.nowUp(userid);
+					
+						System.out.println(list.get(0).getNick() + "님의 현재 상태입니다.");
+						System.out.println("레벨: " + list.get(0).getLv() + " 타입 : " + list.get(0).getId() + " 경험치: "
+								+ list.get(0).getExp() + " 에너지: " + list.get(0).getEnergy() + "날짜 : "
+								+ list.get(0).getDay());
+					
+					
 				} else if (select == 4) {
 
 					System.out.println("님의 현재 순위입니다."); // 랭킹 페이지 표시
@@ -110,9 +115,9 @@ public class DamaSystem {
 							} else if (num2 == 3) {
 								System.out.println("미리 WEB을 예습했어요!");
 							}
-
-//               damaconn.goalsuc(damavo.getLv());
-//               damaconn.goalfail(damavo.getEnergy());
+							damaconn.study(damanow, num2, userid);
+							// damaconn.goalsuc(damavo.getLv());
+							// damaconn.goalfail(damavo.getEnergy());
 
 						} else if (num == 2) {
 							System.out.println("열심히 운동을 합시다!");
@@ -120,7 +125,7 @@ public class DamaSystem {
 							int num2 = sc.nextInt();
 							if (num2 == 1) {
 								System.out.println("열심히 흔들었어요~~~ ");
-								damaconn.music();
+								//damaconn.music();
 
 //                        MP3Player mp3 = new MP3Player();
 //                        String path = damaconn.getClass().getResource("").getPath();
@@ -137,6 +142,7 @@ public class DamaSystem {
 							} else if (num2 == 3) {
 								System.out.println("열심히 수영을 했어요");
 							}
+							damaconn.workout(damanow,num2,userid);
 //               damaconn.goalsuc(damavo.getLv());
 //               damaconn.goalfail(damavo.getEnergy());
 						} else if (num == 3) {
@@ -178,6 +184,7 @@ public class DamaSystem {
 								}
 
 							}
+							damaconn.eat(damavo, num2, userid);
 						} else if (num == 4) {
 							damaconn.sleep();
 							day++;
